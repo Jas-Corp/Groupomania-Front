@@ -1,0 +1,18 @@
+.global-input {
+  background-color: $second-color;
+  color: white;
+  width: 370px;
+  padding: 15px;
+  border-radius: 7px;
+  height: 57px;
+  box-shadow: 5px solid;
+  margin: 15px;
+  box-shadow: 1px 8px 26px -2px rgba(0, 0, 0, 0.57);
+  -webkit-box-shadow: 1px 8px 26px -2px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 1px 8px 26px -2px rgba(0, 0, 0, 0.57);
+
+  &::placeholder {
+    color: white;
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,20 @@
+.form-deco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 160px;
+  width: 45%;
+
+  font-size: 27px;
+
+  & h1 {
+    color: $second-color;
+    font-weight: 100;
+    margin-left: 50px;
+    width: 500px;
+  }
+
+  & img {
+    margin-bottom: 70px;
+  }
+}

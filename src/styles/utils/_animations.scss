@@ -1,0 +1,16 @@
+@keyframes formLoad {
+  0% {
+    margin-top: 500px;
+  }
+  100% {
+    margin-top: 70px;
+  }
+}
+@keyframes formLoadHDecoration {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
