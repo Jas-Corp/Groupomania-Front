@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 const FormDecoration = () => {
   return (
     <>
@@ -11,6 +13,7 @@ const FormDecoration = () => {
           l’entreprise.
         </h1>
       </div>
+      <Outlet />
     </>
   );
 };

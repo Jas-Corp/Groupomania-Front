@@ -1,5 +1,4 @@
 import FormContainer from "../../components/Layouts/FormContainer/FormContainer";
-import FormDecoration from "../../components/Layouts/FormDecoration/FormDecoration";
 import Circle from "../../components/Themes/Circle/Circle";
 import Button from "../../components/Themes/handlers/Button/Button";
 import TextInput from "../../components/Themes/handlers/TextInput/TextInput";
@@ -17,7 +16,7 @@ const SignInPage = () => {
   };
   return (
     <div className={"main"}>
-      <FormDecoration />
+
       <Circle>
         <FormContainer title="Inscription" onSubmit={formHandler}>
           <TextInput
