@@ -2,6 +2,7 @@
   color: $main-color;
 }
 
-a:hover {
+.link:hover {
   color: $main-color_hover;
+  cursor: pointer;
 }

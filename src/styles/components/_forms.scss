@@ -14,10 +14,13 @@
 
   -webkit-box-shadow: -3px 5px 10px 3px rgba(0, 0, 0, 0.41);
   box-shadow: -3px 5px 10px 3px rgba(0, 0, 0, 0.41);
+
   & h1 {
+    
     font-weight: 500;
     font-size: 28px;
     margin-bottom: 60px;
+
     &::after {
       margin-top: 7px;
       content: "";
