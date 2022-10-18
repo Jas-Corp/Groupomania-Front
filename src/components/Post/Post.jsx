@@ -7,7 +7,7 @@ const Post = (props) => {
           <img src="" alt="" />
         </div>
         <div className="post__info">
-          <h3>Jas</h3>
+          <h3>{props.username}</h3>
           <span>Il y a 13 heures</span>
         </div>
 
@@ -17,7 +17,6 @@ const Post = (props) => {
       </div>
       <div className="post__content">
         <p>{props.content}</p>
-
       </div>
     </article>
   );

@@ -12,6 +12,7 @@ const Home = () => {
       setPosts(data);
     });
   }, []);
+  
 
   return (
     <ContentLayout>
