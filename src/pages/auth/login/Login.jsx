@@ -12,11 +12,12 @@ const Login = () => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const [email, setEmail] = useState();
-  const [emailError, setEmailError] = useState("");
+  const [emailError, setEmailError] = useState();
   const [password, setPassword] = useState();
 
   const formHandler = (event) => {
     event.preventDefault();
+    if (emailError) return;
     login(email, password, (data) => {
       if (data.success) {
         authCtx.setIsLogged(true);
@@ -29,7 +30,7 @@ const Login = () => {
   };
 
   const onInputsChange = () => {
-    setEmailError("");
+    setEmailError();
   };
   return (
     <div className="main">

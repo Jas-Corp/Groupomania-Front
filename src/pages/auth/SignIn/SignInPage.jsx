@@ -19,6 +19,7 @@ const SignInPage = () => {
 
   const formHandler = (event) => {
     event.preventDefault();
+    if (emailError || confirmedPasswordError) return;
     if (confirmedPassword != password) {
       setConfirmedPasswordError("Les mots de passe ne sont pas identiques");
       return;
