@@ -10,9 +10,11 @@ import Success from "./pages/success/Success";
 function App() {
   return (
     <Routes>
+      <Route path="test" element={<Home />} />
+
       <Route path="auth" element={<AuthDecoration />}>
-        <Route index element={<SignInPage />} />
-        <Route path="login" element={<Login />} />
+        <Route path="signin" element={<SignInPage />} />
+        <Route index element={<Login />} />
       </Route>
 
       <Route element={<AuthRoutes />}>

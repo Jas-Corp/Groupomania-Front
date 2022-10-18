@@ -1,0 +1,13 @@
+.content-layout {
+  width: 60vw;
+  height: 100vh;
+  margin: auto;
+  border: 1px solid $second-color;
+  border-bottom: none;
+  border-top: none;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

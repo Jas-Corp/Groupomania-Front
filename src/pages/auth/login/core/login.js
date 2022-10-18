@@ -1,6 +1,6 @@
 import server from "../../../../config/server";
-export default async function signin(email, password, callback) {
-  const response = await server.post("/auth/signin", {
+export default async function login(email, password, callback) {
+  const response = await server.post("/auth/login", {
     email,
     password,
   });

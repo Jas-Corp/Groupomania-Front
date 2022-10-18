@@ -23,7 +23,7 @@ const SignInPage = () => {
       setConfirmedPasswordError("Les mots de passe ne sont pas identiques");
       return;
     }
-    signin(email, password, confirmedPassword, (data) => {
+    signin(email, password, (data) => {
       if (data.emailError) setEmailError(data.emailError);
       if (data.success) {
         navigate("/success");
@@ -78,7 +78,7 @@ const SignInPage = () => {
             <span
               className="highlight link"
               onClick={() => {
-                navigate("login");
+                navigate("/");
               }}
             >
               {" "}
