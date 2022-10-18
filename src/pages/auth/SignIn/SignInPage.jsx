@@ -5,8 +5,11 @@ import TextInput from "../../../components/Themes/handlers/TextInput/TextInput";
 import signin from "./core/signin";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../../contexts/auth-context";
 
 const SignInPage = () => {
+  const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState();
@@ -22,6 +25,10 @@ const SignInPage = () => {
     }
     signin(email, password, confirmedPassword, (data) => {
       if (data.emailError) setEmailError(data.emailError);
+      if (data.success) {
+        navigate("/success");
+        authCtx.setIsLogged(true);
+      }
     });
   };
 

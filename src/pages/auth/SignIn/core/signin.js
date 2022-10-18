@@ -10,5 +10,6 @@ export default async function signin(
     password,
     confirmed_password,
   });
-  callback(response.data);
+  const data = response.data;
+  callback(data);
 }

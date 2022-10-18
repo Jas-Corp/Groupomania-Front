@@ -6,7 +6,7 @@ const FormDecoration = () => {
       <div className="form-deco">
         <img
           src={require("./../../../resources/images/logos/logo.png")}
-          alt="squares"
+          alt="Groupomania logo"
         />
         <h1>
           <span className="highlight">Développer</span> votre réseau dans

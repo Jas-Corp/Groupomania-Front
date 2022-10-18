@@ -4,6 +4,7 @@ import "./styles/index.scss";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import printSecurityMessage from "./utils/consoleSecurity";
+import { AuthProvider } from "./contexts/auth-context";
 
 printSecurityMessage(
   "Ne saisissez pas et ne copiez pas du code que vous ne comprenez pas au risque que des personnes malveillantes récupèrent vos informations"
@@ -12,6 +13,8 @@ printSecurityMessage(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </Router>
 );

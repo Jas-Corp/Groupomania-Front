@@ -1,10 +1,11 @@
 import SignInPage from "./pages/auth/SignIn/SignInPage";
 import { Routes, Route, Navigate } from "react-router-dom";
-import AuthDecoration from "./components/Layouts/FormDecoration/AuthDecoration";
+import AuthDecoration from "./components/Layouts/AuthDecoration/AuthDecoration";
 import AuthRoutes from "./Routes/AuthRoutes";
 import Login from "./pages/auth/login/Login";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
+import Success from "./pages/success/Success";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/profile/:username" element={<Profile />} />
       </Route>
 
-      <Route path="validate" element={<SignInPage />} />
+      <Route path="success" element={<Success />} />
       <Route path="error" element={<SignInPage />} />
 
       <Route path="*" element={<Navigate to="/auth" replace />} />
