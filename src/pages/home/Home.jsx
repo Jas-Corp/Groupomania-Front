@@ -12,12 +12,11 @@ const Home = () => {
       setPosts(data);
     });
   }, []);
-  
 
   return (
     <ContentLayout>
       {posts.map((post, index) => (
-        <Post content={post.content} key={index} />
+        <Post content={post.content} username="Jas" key={index} />
       ))}
     </ContentLayout>
   );

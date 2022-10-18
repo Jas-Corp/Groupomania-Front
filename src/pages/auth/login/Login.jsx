@@ -12,6 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const [email, setEmail] = useState();
+  const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState();
 
   const formHandler = (event) => {
@@ -21,7 +22,14 @@ const Login = () => {
         authCtx.setIsLogged(true);
         navigate("/home");
       }
+      if (data.error) {
+        setEmailError(data.error);
+      }
     });
+  };
+
+  const onInputsChange = () => {
+    setEmailError("");
   };
   return (
     <div className="main">
@@ -31,7 +39,11 @@ const Login = () => {
             placeholder="Votre adresse email"
             type="email"
             required
-            onChange={(e) => setEmail(e.target.value)}
+            error={emailError}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              onInputsChange();
+            }}
           />
           <TextInput
             placeholder="Mot de passe"
@@ -39,7 +51,10 @@ const Login = () => {
             name="mot de passe"
             autoComplete="on"
             required
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              onInputsChange();
+            }}
           />
 
           <Button>Me connecter</Button>
