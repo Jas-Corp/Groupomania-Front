@@ -29,6 +29,7 @@ const SignInPage = () => {
       if (data.success) {
         navigate("/success");
         authCtx.setIsLogged(true);
+        authCtx.setToken(data.token);
       }
     });
   };

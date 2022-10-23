@@ -21,6 +21,7 @@ const Login = () => {
     login(email, password, (data) => {
       if (data.success) {
         authCtx.setIsLogged(true);
+        authCtx.setToken(data.token);
         navigate("/home");
       }
       if (data.error) {
@@ -67,7 +68,6 @@ const Login = () => {
                 navigate("./signin");
               }}
             >
-              {" "}
               S'inscrire
             </span>
           </p>

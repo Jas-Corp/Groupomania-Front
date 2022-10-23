@@ -8,18 +8,20 @@ import CreatePost from "../../components/CreatePost/CreatePost";
 const Home = () => {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
+  const loadPost = () => {
     getPosts((data) => {
       setPosts(data);
     });
-  }, []);
+  };
+
+  useEffect(() => loadPost(), []);
 
   const getUsernameFromEmail = useCallback((email) => email.split("@")[0], []);
 
   return (
     <ContentLayout>
-      <CreatePost />
-      {posts.map((post, index) => (
+      <CreatePost reloadPost={loadPost} />
+      {posts.reverse().map((post, index) => (
         <Post
           content={post.content}
           username={getUsernameFromEmail(post.author.email)}

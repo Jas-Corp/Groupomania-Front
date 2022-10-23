@@ -4,56 +4,38 @@
   border-left: none;
   border-radius: 10px;
   border-collapse: collapse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  &__content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+  }
+  &__text {
+    margin-bottom: 10px;
+    font-size: 17px;
+  }
   &__input {
-    width: 90%;
+    width: 50vw;
     display: inline-block;
     height: 130px !important;
     padding: 15px;
-    margin: 50px;
-    margin-left: 10px;
-    margin-bottom: 0px;
+
     background-color: white;
     border-radius: 10px;
     border: 1px solid $second-color;
     resize: none;
   }
+
   &__button {
     height: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: auto;
-  }
-  &__header {
-    display: flex;
-    align-items: center;
-    &__img {
-      background-color: black;
-      width: 40px;
-      height: 40px;
-      margin: 15px;
-      border-radius: 100%;
-    }
-
-    &__utils {
-      margin-left: auto;
-      margin-right: 15px;
-
-      & svg {
-        color: $main-color;
-        font-size: 25px;
-      }
-    }
-
-    & span {
-      font-size: 12px;
-      color: $second-color;
-    }
-  }
-
-  &__content {
-    margin: 50px;
-    margin-top: 0px;
+    align-self: flex-end;
+    margin: 0;
+    margin: 20px 0px 20px 0px;
   }
 }
