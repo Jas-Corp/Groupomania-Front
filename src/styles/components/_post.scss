@@ -1,8 +1,9 @@
 .post {
+  margin-top: 50px;
   border: 1px solid $second-color;
   border-right: none;
   border-left: none;
-  border-radius: 10px;
+  border-radius: 5px;
   border-collapse: collapse;
   &__header {
     display: flex;
@@ -20,7 +21,6 @@
       margin-right: 15px;
 
       & svg {
-        color: $main-color;
         font-size: 25px;
       }
     }
@@ -35,4 +35,32 @@
     margin: 50px;
     margin-top: 0px;
   }
+}
+
+.imgtt {
+  width: 20%;
+  height: auto;
+}
+.im {
+  width: 70%;
+  height: auto;
+}
+
+.imc {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arbre {
+  display: flex;
+}
+.imgtt {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.imr {
+  width: 100px;
+  height: 100px;
 }

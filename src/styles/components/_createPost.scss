@@ -7,10 +7,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   &__content {
     display: flex;
     flex-direction: column;
+
     margin-top: 40px;
   }
   &__text {
@@ -29,13 +29,62 @@
     resize: none;
   }
 
+  &__error {
+    align-self: flex-start;
+    justify-self: flex-start;
+    margin-right: auto;
+    color: $error-color;
+  }
+
+  &__icons {
+    display: flex;
+    margin-top: 5px;
+    justify-content: flex-end;
+
+    &__file input {
+      display: none;
+    }
+    &__file {
+      display: inline-block;
+      &__icon > * {
+        color: $main-color;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    width: 100%;
+
+    justify-content: flex-end;
+    align-items: center;
+  }
+  &__images {
+    height: 70px;
+    display: flex;
+    align-items: center;
+
+    &__image {
+      width: 50px;
+      height: 50px;
+      margin-left: 10px;
+      border: 1px solid $second-color;
+      border-radius: 50px;
+      transition: all 0.1s;
+
+      &:hover {
+        width: 70px;
+        height: 70px;
+        cursor: pointer;
+      }
+    }
+  }
   &__button {
     height: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    align-self: flex-end;
     margin: 0;
-    margin: 20px 0px 20px 0px;
+    margin: 20px 0px 20px 30px;
   }
 }

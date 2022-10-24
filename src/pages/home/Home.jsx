@@ -23,7 +23,7 @@ const Home = () => {
       <CreatePost reloadPost={loadPost} />
       {posts.reverse().map((post, index) => (
         <Post
-          content={post.content}
+          post={post}
           username={getUsernameFromEmail(post.author.email)}
           key={index}
         />
