@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../../contexts/auth-context";
+import { useCallback } from "react";
 
 const SignInPage = () => {
   const authCtx = useContext(AuthContext);
@@ -16,9 +17,10 @@ const SignInPage = () => {
   const [password, setPassword] = useState();
   const [confirmedPassword, setConfirmedPassword] = useState();
   const [confirmedPasswordError, setConfirmedPasswordError] = useState();
-
+  const getUsernameFromEmail = useCallback((email) => email.split("@")[0], []);
   const formHandler = (event) => {
     event.preventDefault();
+
     if (emailError || confirmedPasswordError) return;
     if (confirmedPassword != password) {
       setConfirmedPasswordError("Les mots de passe ne sont pas identiques");
@@ -30,6 +32,8 @@ const SignInPage = () => {
         navigate("/success");
         authCtx.setIsLogged(true);
         authCtx.setToken(data.token);
+        authCtx.setId(data.id);
+        authCtx.setName(getUsernameFromEmail(data.email));
       }
     });
   };

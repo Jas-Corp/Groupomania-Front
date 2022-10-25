@@ -5,7 +5,11 @@ const AuthContext = React.createContext({
   isLogged: false,
   token: "",
   name: "",
+  id: "",
   setIsLogged: () => {},
+  setToken: () => {},
+  setId: () => {},
+  setName: () => {},
 });
 export default AuthContext;
 
@@ -13,6 +17,7 @@ export const AuthProvider = (props) => {
   const [isLogged, setIsLogged] = useState(false);
   const [token, setToken] = useState("");
   const [name, setName] = useState("");
+  const [id, setId] = useState("");
 
   return (
     <AuthContext.Provider
@@ -23,6 +28,8 @@ export const AuthProvider = (props) => {
         setToken,
         name,
         setName,
+        id,
+        setId,
       }}
     >
       {props.children}

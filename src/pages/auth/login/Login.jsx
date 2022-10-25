@@ -7,6 +7,7 @@ import AuthContext from "../../../contexts/auth-context";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import { useCallback } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState();
   const [password, setPassword] = useState();
+  const getUsernameFromEmail = useCallback((email) => email.split("@")[0], []);
 
   const formHandler = (event) => {
     event.preventDefault();
@@ -22,6 +24,8 @@ const Login = () => {
       if (data.success) {
         authCtx.setIsLogged(true);
         authCtx.setToken(data.token);
+        authCtx.setId(data.id);
+        authCtx.setName(getUsernameFromEmail(data.email));
         navigate("/home");
       }
       if (data.error) {

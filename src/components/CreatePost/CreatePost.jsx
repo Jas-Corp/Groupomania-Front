@@ -1,22 +1,25 @@
-import { useContext } from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Icon } from "@iconify/react";
+import FileBase64 from "react-file-base64";
 import AuthContext from "../../contexts/auth-context";
 import Button from "../Themes/handlers/Button/Button";
 import createPost from "./core/CreatePost";
-import { Icon } from "@iconify/react";
-import FileBase64 from "react-file-base64";
+
 const CreatePost = (props) => {
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);
   const [error, setError] = useState([]);
+
   const authCtx = useContext(AuthContext);
+
   const formHandler = (e) => {
     e.preventDefault();
 
-    if (content.length < 20) {
-      setError("Le texte doit comporter au moins 20 caractères.");
+    if (content.length < 5) {
+      setError("Le texte doit comporter au moins 5 caractères.");
       return;
     }
+
     setContent("");
     createPost(content, images, authCtx.token, props.reloadPost());
   };
@@ -25,8 +28,10 @@ const CreatePost = (props) => {
     <form className="create-post" onSubmit={formHandler}>
       <div className="create-post__content">
         <p className="create-post__text">
-          Bonjour, <span className="highlight">Jas</span> quoi de neuf ?
+          Bonjour, <span className="highlight">{authCtx.name}</span> quoi de
+          neuf ?
         </p>
+
         <div className="create-post__header">
           <textarea
             className="create-post__input"
@@ -39,8 +44,10 @@ const CreatePost = (props) => {
               setContent(e.target.value);
             }}
           />
+
           <div className="create-post__icons">
             <p className="create-post__error">{error}</p>
+
             <div className="create-post__icons__file">
               <label htmlFor="file" className="link">
                 <Icon
@@ -76,7 +83,7 @@ const CreatePost = (props) => {
             ))}
           </div>
 
-          <Button className="create-post__button">Poster</Button>
+          <Button className="create-post__button">Publier</Button>
         </div>
       </div>
     </form>

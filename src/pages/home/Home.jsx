@@ -8,6 +8,7 @@ import CreatePost from "../../components/CreatePost/CreatePost";
 const Home = () => {
   const [posts, setPosts] = useState([]);
 
+
   const loadPost = () => {
     getPosts((data) => {
       setPosts(data);
