@@ -1,4 +1,4 @@
-.create-post {
+.publish {
   border: 1px solid $second-color;
   border-right: none;
   border-left: none;
@@ -24,7 +24,6 @@
     height: 130px !important;
     padding: 15px;
 
-    background-color: white;
     border-radius: 10px;
     border: 1px solid $second-color;
     resize: none;
@@ -60,7 +59,7 @@
     justify-content: flex-end;
     align-items: center;
   }
-  
+
   &__images {
     height: 70px;
     display: flex;

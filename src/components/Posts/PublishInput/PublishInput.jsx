@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { Icon } from "@iconify/react";
-import { createPost } from "../../core/posts/posts";
+import { createPost } from "../../../core/posts/posts";
 import FileBase64 from "react-file-base64";
-import AuthContext from "../../contexts/auth-context";
-import Button from "../Themes/handlers/Button/Button";
+import AuthContext from "../../../contexts/auth-context";
+import Button from "../../Themes/handlers/Button/Button";
 
-const CreatePost = (props) => {
+const PublishInput = (props) => {
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);
   const [error, setError] = useState([]);
@@ -32,16 +32,16 @@ const CreatePost = (props) => {
   };
 
   return (
-    <form className="create-post" onSubmit={formHandler}>
-      <div className="create-post__content">
-        <p className="create-post__text">
+    <form className="publish" onSubmit={formHandler}>
+      <div className="publish__content">
+        <p className="publish__text">
           Bonjour, <span className="highlight">{authCtx.name}</span> quoi de
           neuf ?
         </p>
 
-        <div className="create-post__header">
+        <div className="publish__header">
           <textarea
-            className="create-post__input"
+            className="publish__input"
             placeholder="Nouveau post..."
             value={content}
             required
@@ -52,14 +52,14 @@ const CreatePost = (props) => {
             }}
           />
 
-          <div className="create-post__icons">
-            <p className="create-post__error">{error}</p>
+          <div className="publish__icons">
+            <p className="publish__error">{error}</p>
 
-            <div className="create-post__icons__file">
+            <div className="publish__icons__file">
               <label htmlFor="file" className="link">
                 <Icon
                   icon="bi:file-earmark-image"
-                  className="create-post__icons__file__icon"
+                  className="publish__icons__file__icon"
                 />
               </label>
               <FileBase64 id="file" multiple={true} onDone={onImageSelected} />
@@ -67,22 +67,22 @@ const CreatePost = (props) => {
           </div>
         </div>
 
-        <div className="create-post__footer">
-          <div className="create-post__images">
+        <div className="publish__footer">
+          <div className="publish__images">
             {images.map((image) => (
               <img
                 src={image.base64}
                 alt={image.name}
-                className="create-post__images__image"
+                className="publish__images__image"
               />
             ))}
           </div>
 
-          <Button className="create-post__button">Publier</Button>
+          <Button className="publish__button">Publier</Button>
         </div>
       </div>
     </form>
   );
 };
 
-export default CreatePost;
+export default PublishInput;

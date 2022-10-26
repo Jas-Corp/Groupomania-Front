@@ -1,8 +1,8 @@
-import Post from "../../components/Post/Post";
+import Post from "../../components/Posts/Post/Post";
 import ContentLayout from "../../components/Layouts/ContentLayout/ContentLayout";
 import { useEffect, useState } from "react";
 import { getPosts } from "../../core/posts/posts";
-import CreatePost from "../../components/CreatePost/CreatePost";
+import PublishInput from "../../components/Posts/PublishInput/PublishInput";
 import getUsernameFromEmail from "../../core/utils/getUsernameFromEmail";
 
 // Home Component
@@ -19,7 +19,9 @@ const Home = () => {
 
   return (
     <ContentLayout>
-      <CreatePost reloadPost={loadPost} />
+      
+      <PublishInput reloadPost={loadPost} />
+
       {posts.reverse().map((post, index) => (
         <Post
           post={post}

@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import { useState } from "react";
+
 const Post = (props) => {
   const images = props.post.images ? JSON.parse(props.post.images) : null;
   const [mainImage, setMainImage] = useState(images ? images[0] : null);
