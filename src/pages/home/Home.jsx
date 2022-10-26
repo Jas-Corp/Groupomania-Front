@@ -1,13 +1,13 @@
 import Post from "../../components/Post/Post";
 import ContentLayout from "../../components/Layouts/ContentLayout/ContentLayout";
-import { useEffect, useState, useCallback } from "react";
-import getPosts from "./core/posts";
+import { useEffect, useState } from "react";
+import { getPosts } from "../../core/posts/posts";
 import CreatePost from "../../components/CreatePost/CreatePost";
+import getUsernameFromEmail from "../../core/utils/getUsernameFromEmail";
 
 // Home Component
 const Home = () => {
   const [posts, setPosts] = useState([]);
-
 
   const loadPost = () => {
     getPosts((data) => {
@@ -15,9 +15,7 @@ const Home = () => {
     });
   };
 
-  useEffect(() => loadPost(), []);
-
-  const getUsernameFromEmail = useCallback((email) => email.split("@")[0], []);
+  useEffect(() => loadPost(), [posts]);
 
   return (
     <ContentLayout>

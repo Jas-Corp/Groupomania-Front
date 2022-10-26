@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./styles/index.scss";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
-import printSecurityMessage from "./utils/consoleSecurity";
+import printSecurityMessage from "./core/utils/consoleSecurity";
 import { AuthProvider } from "./contexts/auth-context";
 
 printSecurityMessage(

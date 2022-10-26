@@ -2,38 +2,35 @@ import FormContainer from "../../../components/Layouts/FormContainer/FormContain
 import Circle from "../../../components/Themes/Circle/Circle";
 import Button from "../../../components/Themes/handlers/Button/Button";
 import TextInput from "../../../components/Themes/handlers/TextInput/TextInput";
-import signin from "./core/signin";
+import { signin } from "../../../core/auth/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import AuthContext from "../../../contexts/auth-context";
-import { useCallback } from "react";
+import useAuth from "../../../hooks/useAuth";
 
 const SignInPage = () => {
-  const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState();
   const [password, setPassword] = useState();
   const [confirmedPassword, setConfirmedPassword] = useState();
   const [confirmedPasswordError, setConfirmedPasswordError] = useState();
-  const getUsernameFromEmail = useCallback((email) => email.split("@")[0], []);
+  const { setLogedUser } = useAuth();
+
   const formHandler = (event) => {
     event.preventDefault();
 
     if (emailError || confirmedPasswordError) return;
-    if (confirmedPassword != password) {
+
+    if (confirmedPassword !== password) {
       setConfirmedPasswordError("Les mots de passe ne sont pas identiques");
       return;
     }
+
     signin(email, password, (data) => {
       if (data.emailError) setEmailError(data.emailError);
       if (data.success) {
         navigate("/success");
-        authCtx.setIsLogged(true);
-        authCtx.setToken(data.token);
-        authCtx.setId(data.id);
-        authCtx.setName(getUsernameFromEmail(data.email));
+        setLogedUser(data);
       }
     });
   };

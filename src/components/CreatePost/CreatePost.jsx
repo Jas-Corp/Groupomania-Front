@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { Icon } from "@iconify/react";
+import { createPost } from "../../core/posts/posts";
 import FileBase64 from "react-file-base64";
 import AuthContext from "../../contexts/auth-context";
 import Button from "../Themes/handlers/Button/Button";
-import createPost from "./core/CreatePost";
 
 const CreatePost = (props) => {
   const [content, setContent] = useState("");
@@ -22,6 +22,13 @@ const CreatePost = (props) => {
 
     setContent("");
     createPost(content, images, authCtx.token, props.reloadPost());
+  };
+
+  const onImageSelected = (e) => {
+    if (e.length <= 4) {
+      setImages([...e]);
+      setError("");
+    } else setError("Veillez à ce qu'il n'y ait pas plus de 4 images.");
   };
 
   return (
@@ -55,19 +62,7 @@ const CreatePost = (props) => {
                   className="create-post__icons__file__icon"
                 />
               </label>
-              <FileBase64
-                id="file"
-                multiple={true}
-                onDone={(e) => {
-                  if (e.length <= 4) {
-                    setImages([...e]);
-                    setError("");
-                  } else
-                    setError(
-                      "Veillez à ce qu'il n'y ait pas plus de 4 images."
-                    );
-                }}
-              />
+              <FileBase64 id="file" multiple={true} onDone={onImageSelected} />
             </div>
           </div>
         </div>

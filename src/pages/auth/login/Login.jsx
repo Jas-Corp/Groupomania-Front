@@ -1,33 +1,29 @@
+import { login } from "../../../core/auth/auth";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FormContainer from "../../../components/Layouts/FormContainer/FormContainer";
 import Circle from "../../../components/Themes/Circle/Circle";
 import Button from "../../../components/Themes/handlers/Button/Button";
 import TextInput from "../../../components/Themes/handlers/TextInput/TextInput";
-import login from "./core/login";
-import AuthContext from "../../../contexts/auth-context";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { useCallback } from "react";
+import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const authCtx = useContext(AuthContext);
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState();
   const [password, setPassword] = useState();
-  const getUsernameFromEmail = useCallback((email) => email.split("@")[0], []);
+  const navigate = useNavigate();
+  const { setLogedUser } = useAuth();
 
   const formHandler = (event) => {
     event.preventDefault();
     if (emailError) return;
+
     login(email, password, (data) => {
       if (data.success) {
-        authCtx.setIsLogged(true);
-        authCtx.setToken(data.token);
-        authCtx.setId(data.id);
-        authCtx.setName(getUsernameFromEmail(data.email));
+        setLogedUser(data);
         navigate("/home");
       }
+
       if (data.error) {
         setEmailError(data.error);
       }
