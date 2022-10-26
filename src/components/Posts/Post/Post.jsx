@@ -21,37 +21,38 @@ const Post = (props) => {
           <Icon icon="akar-icons:more-vertical" />
         </span>
       </div>
+
       <div className="post__content">
         <p>{props.post.content}</p>
 
+        {/* IMAGE */}
         {mainImage && (
           <div className="post__mainImage">
             <img src={mainImage.base64} alt={mainImage.name} className={`im`} />
           </div>
         )}
+
         <div className="post__imageSelector">
           {images &&
             images.length != 1 &&
-            images.map((image, index) => {
-              return (
-                <div
-                  className={`post__imageSelector__image-container ${
-                    imageSelected == index && "post__imageSelector__selected"
-                  }`}
-                  key={index}
-                >
-                  <img
-                    src={image.base64}
-                    alt={image.name}
-                    onClick={() => {
-                      setMainImage(image);
-                      setImageSelected(index);
-                    }}
-                    className={`post__imageSelector__image`}
-                  />
-                </div>
-              );
-            })}
+            images.map((image, index) => (
+              <div
+                className={`post__imageSelector__image-container ${
+                  imageSelected == index && "post__imageSelector__selected"
+                }`}
+                key={index}
+              >
+                <img
+                  src={image.base64}
+                  alt={image.name}
+                  onClick={() => {
+                    setMainImage(image);
+                    setImageSelected(index);
+                  }}
+                  className={`post__imageSelector__image`}
+                />
+              </div>
+            ))}
         </div>
       </div>
     </article>

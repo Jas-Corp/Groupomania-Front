@@ -11,19 +11,16 @@
     border-radius: 900px;
   }
 
-  /* Track */
   &::-webkit-scrollbar-track {
     background: rgb(245, 245, 245);
     border-radius: 90px;
   }
 
-  /* Handle */
   &::-webkit-scrollbar-thumb {
     background: $main-color;
     border-radius: 3px;
   }
 
-  /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: $second-color;
   }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getPosts } from "../../core/posts/posts";
 import PublishInput from "../../components/Posts/PublishInput/PublishInput";
 import getUsernameFromEmail from "../../core/utils/getUsernameFromEmail";
+import HomeHeader from "../../components/Pages/HomeHeader/HomeHeader";
 
 // Home Component
 const Home = () => {
@@ -19,7 +20,7 @@ const Home = () => {
 
   return (
     <ContentLayout>
-      
+      <HomeHeader />
       <PublishInput reloadPost={loadPost} />
 
       {posts.reverse().map((post, index) => (
