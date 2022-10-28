@@ -19,18 +19,20 @@ const Home = () => {
   useEffect(() => loadPost(), [posts]);
 
   return (
-    <ContentLayout>
-      <HomeHeader />
-      <PublishInput reloadPost={loadPost} />
+    <div className="home--background">
+      <ContentLayout>
+        <HomeHeader />
+        <PublishInput reloadPost={loadPost} />
 
-      {posts.reverse().map((post, index) => (
-        <Post
-          post={post}
-          username={getUsernameFromEmail(post.author.email)}
-          key={index}
-        />
-      ))}
-    </ContentLayout>
+        {posts.reverse().map((post, index) => (
+          <Post
+            post={post}
+            username={getUsernameFromEmail(post.author.email)}
+            key={index}
+          />
+        ))}
+      </ContentLayout>
+    </div>
   );
 };
 export default Home;

@@ -28,7 +28,11 @@ const Post = (props) => {
         {/* IMAGE */}
         {mainImage && (
           <div className="post__mainImage">
-            <img src={mainImage.base64} alt={mainImage.name} className={`im`} />
+            <img
+              src={mainImage.base64}
+              alt={mainImage.name}
+              className="post__mainImage__image"
+            />
           </div>
         )}
 

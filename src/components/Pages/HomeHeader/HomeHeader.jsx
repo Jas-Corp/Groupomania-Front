@@ -1,14 +1,18 @@
+import Filters from "./Filters/Filters";
+
 const HomeHeader = () => {
   return (
     <>
       <header className="homeheader">
-        <h1 className="homeheader__title">Accueil</h1>
-        <input
-          type="text"
-          className="homeheader__searchbar"
-          placeholder="Recherche..."
-        />
-        {/* FILTER */}
+        <div className="top">
+          <h1 className="homeheader__title">Accueil</h1>
+          <input
+            type="text"
+            className="homeheader__searchbar"
+            placeholder="Recherche..."
+          />
+        </div>
+        <Filters />
       </header>
     </>
   );
