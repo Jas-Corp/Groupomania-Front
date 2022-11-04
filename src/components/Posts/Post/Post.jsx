@@ -2,8 +2,8 @@ import { Icon } from "@iconify/react";
 import { useState } from "react";
 
 const Post = (props) => {
-  const images = props.post.images ? JSON.parse(props.post.images) : null;
-  const [mainImage, setMainImage] = useState(images ? images[0] : null);
+  let images = props.post.images ? JSON.parse(props.post.images) : null;
+  if (images.length == 0) images = null;
   const [imageSelected, setImageSelected] = useState(0);
 
   return (
@@ -19,6 +19,7 @@ const Post = (props) => {
 
         <span className="post__header__utils icon_orange link">
           <Icon icon="akar-icons:more-vertical" />
+          <div className="test"></div>
         </span>
       </div>
 
@@ -26,11 +27,10 @@ const Post = (props) => {
         <p>{props.post.content}</p>
 
         {/* IMAGE */}
-        {mainImage && (
+        {images && (
           <div className="post__mainImage">
             <img
-              src={mainImage.base64}
-              alt={mainImage.name}
+              src={images[imageSelected]}
               className="post__mainImage__image"
             />
           </div>
@@ -47,10 +47,8 @@ const Post = (props) => {
                 key={index}
               >
                 <img
-                  src={image.base64}
-                  alt={image.name}
+                  src={image}
                   onClick={() => {
-                    setMainImage(image);
                     setImageSelected(index);
                   }}
                   className={`post__imageSelector__image`}

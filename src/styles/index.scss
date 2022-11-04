@@ -21,3 +21,13 @@
 @import "./pages/SignInPage";
 @import "./pages/SuccessPage";
 @import "./pages/Home";
+
+.test {
+  background-color: red;
+  width: 100px;
+  height: 300px;
+  position:absolute;
+  right: 0;
+  top: 0;
+//   z-index: ;
+}

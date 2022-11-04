@@ -6,7 +6,7 @@ export async function getPosts(callback) {
 }
 
 export async function createPost(content, images, token, callback) {
-  await server.post(
+  const data = await server.post(
     "/post/create-post",
     {
       content,
@@ -18,5 +18,5 @@ export async function createPost(content, images, token, callback) {
       },
     }
   );
-  callback();
+  callback(data.data);
 }
