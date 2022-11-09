@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import React from "react";
 
 const AuthContext = React.createContext({
@@ -6,18 +6,21 @@ const AuthContext = React.createContext({
   token: "",
   name: "",
   id: "",
-  setIsLogged: () => {},
-  setToken: () => {},
-  setId: () => {},
-  setName: () => {},
+  email: "",
+  setIsLogged: (loged: boolean) => {},
+  setToken: (token: string) => {},
+  setId: (id: string) => {},
+  setName: (name: string) => {},
+  setEmail: (email: string) => {},
 });
 export default AuthContext;
 
-export const AuthProvider = (props) => {
+export const AuthProvider = (props: PropsWithChildren) => {
   const [isLogged, setIsLogged] = useState(false);
   const [token, setToken] = useState("");
   const [name, setName] = useState("");
   const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
 
   return (
     <AuthContext.Provider
@@ -30,6 +33,8 @@ export const AuthProvider = (props) => {
         setName,
         id,
         setId,
+        email,
+        setEmail,
       }}
     >
       {props.children}

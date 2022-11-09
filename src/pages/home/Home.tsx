@@ -11,12 +11,12 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
 
   const loadPost = () => {
-    getPosts((data) => {
+    getPosts((data: any) => {
       setPosts(data);
     });
   };
 
-  useEffect(() => loadPost(), [posts]);
+  useEffect(() => loadPost(), []);
 
   return (
     <div className="home--background">
@@ -24,11 +24,12 @@ const Home = () => {
         <HomeHeader />
         <PublishInput reloadPost={loadPost} />
 
-        {posts.reverse().map((post, index) => (
+        {posts.reverse().map((post: any, index) => (
           <Post
             post={post}
             username={getUsernameFromEmail(post.author.email)}
             key={index}
+            reloadPost={loadPost}
           />
         ))}
       </ContentLayout>

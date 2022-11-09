@@ -1,6 +1,10 @@
 import server from "../../config/server";
 
-export async function login(email, password, callback) {
+export async function login(
+  email: string,
+  password: string,
+  callback: (data: any) => void
+) {
   const response = await server.post("/auth/login", {
     email,
     password,
@@ -9,7 +13,11 @@ export async function login(email, password, callback) {
   callback(data);
 }
 
-export async function signin(email, password, callback) {
+export async function signin(
+  email: string,
+  password: string,
+  callback: (data: any) => void
+) {
   const response = await server.post("/auth/signin", {
     email,
     password,

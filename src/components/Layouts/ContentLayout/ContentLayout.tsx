@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom";
+import { PropsWithChildren } from "react";
 
-const ContentLayout = (props) => {
+const ContentLayout = (props: PropsWithChildren) => {
   return <main className="content-layout">{props.children}</main>;
 };
 

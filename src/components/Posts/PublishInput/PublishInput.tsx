@@ -1,19 +1,22 @@
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { Icon } from "@iconify/react";
 import { createPost } from "../../../core/posts/posts";
-import FileBase64 from "react-file-base64";
 import AuthContext from "../../../contexts/auth-context";
 import Button from "../../Themes/handlers/Button/Button";
 import imagesToCompressedBase64 from "../../../core/utils/compressImage";
 
-const PublishInput = (props) => {
+type Props = {
+  reloadPost: () => void;
+};
+const PublishInput = (props: Props) => {
   const [content, setContent] = useState("");
-  const [images, setImages] = useState([]);
-  const [error, setError] = useState([]);
+  const [images, setImages] = useState<string[]>([]);
+  const [error, setError] = useState("");
+  console.log(images);
 
   const authCtx = useContext(AuthContext);
 
-  const formHandler = (e) => {
+  const formHandler = (e: FormEvent) => {
     e.preventDefault();
 
     if (content.length < 5) {
@@ -22,18 +25,19 @@ const PublishInput = (props) => {
     }
 
     setContent("");
-    createPost(content, images, authCtx.token, (data) => {
+    createPost(content, images, authCtx.token, (data: { message: string }) => {
       setError(data.message);
       setImages([]);
       props.reloadPost();
     });
   };
 
-  const onImageSelected = (e) => {
+  const onImageSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files === null) return;
     if (e.target.files.length <= 4) {
-      const images_compressed = imagesToCompressedBase64(e.target.files);
-      setImages(images_compressed);
       setError("");
+      const tempFile: string[] = await imagesToCompressedBase64(e.target.files);
+      setImages(tempFile);
     } else setError("Veillez à ce qu'il n'y ait pas plus de 4 images.");
   };
 
@@ -51,7 +55,7 @@ const PublishInput = (props) => {
             placeholder="Nouveau post..."
             value={content}
             required
-            minLength="6"
+            minLength={6}
             onChange={(e) => {
               setError("");
               setContent(e.target.value);
@@ -81,8 +85,13 @@ const PublishInput = (props) => {
 
         <div className="publish__footer">
           <div className="publish__images">
-            {images.map((image) => (
-              <img src={image} className="publish__images__image" />
+            {images.map((image, index) => (
+              <img
+                src={image}
+                key={index}
+                className="publish__images__image"
+                alt="selected"
+              />
             ))}
           </div>
 

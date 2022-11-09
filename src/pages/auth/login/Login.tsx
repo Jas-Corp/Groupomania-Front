@@ -8,17 +8,17 @@ import TextInput from "../../../components/Themes/handlers/TextInput/TextInput";
 import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [emailError, setEmailError] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { setLogedUser } = useAuth();
 
-  const formHandler = (event) => {
-    event.preventDefault();
+  const formHandler = (e: React.FormEvent<Element>) => {
+    e.preventDefault();
     if (emailError) return;
 
-    login(email, password, (data) => {
+    login(email, password, (data: any) => {
       if (data.success) {
         setLogedUser(data);
         navigate("/home");
@@ -31,12 +31,12 @@ const Login = () => {
   };
 
   const onInputsChange = () => {
-    setEmailError();
+    setEmailError("");
   };
   return (
     <div className="main">
       <Circle>
-        <FormContainer title="Connexion" onSubmit={formHandler}>
+        <FormContainer title="Connexion" onSubmit={formHandler as () => {}}>
           <TextInput
             placeholder="Votre adresse email"
             type="email"

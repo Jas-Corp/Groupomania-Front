@@ -9,14 +9,14 @@ import useAuth from "../../../hooks/useAuth";
 
 const SignInPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState();
-  const [emailError, setEmailError] = useState();
-  const [password, setPassword] = useState();
-  const [confirmedPassword, setConfirmedPassword] = useState();
-  const [confirmedPasswordError, setConfirmedPasswordError] = useState();
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmedPassword, setConfirmedPassword] = useState("");
+  const [confirmedPasswordError, setConfirmedPasswordError] = useState("");
   const { setLogedUser } = useAuth();
 
-  const formHandler = (event) => {
+  const formHandler = (event: React.FormEvent<Element>) => {
     event.preventDefault();
 
     if (emailError || confirmedPasswordError) return;
@@ -26,7 +26,7 @@ const SignInPage = () => {
       return;
     }
 
-    signin(email, password, (data) => {
+    signin(email, password, (data: any) => {
       if (data.emailError) setEmailError(data.emailError);
       if (data.success) {
         navigate("/success");
@@ -35,15 +35,15 @@ const SignInPage = () => {
     });
   };
 
-  const emailChange = (event) => {
-    setEmail(event.target.value);
+  const emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
     setEmailError("");
   };
-  const passwordChange = (event) => {
-    setPassword(event.target.value);
+  const passwordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
-  const confirmedPasswordChange = (event) => {
-    setConfirmedPassword(event.target.value);
+  const confirmedPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmedPassword(e.target.value);
     setConfirmedPasswordError("");
   };
 

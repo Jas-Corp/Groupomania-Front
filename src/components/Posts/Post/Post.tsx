@@ -1,10 +1,27 @@
 import { Icon } from "@iconify/react";
+import { useContext } from "react";
 import { useState } from "react";
+import AuthContext from "../../../contexts/auth-context";
+import ContextMenu from "./ContextMenu/ContextMenu";
+type Props = {
+  username: String;
+  post: {
+    author: { email: string };
+    images: string;
+    id: number;
+    content: string;
+  };
+  reloadPost: () => void;
+};
+const Post = (props: Props) => {
+  const authCtx = useContext(AuthContext);
+  const isAuthor = authCtx.email === props.post.author.email;
 
-const Post = (props) => {
   let images = props.post.images ? JSON.parse(props.post.images) : null;
-  if (images.length == 0) images = null;
+  if (images.length === 0) images = null;
+
   const [imageSelected, setImageSelected] = useState(0);
+  const [displayContextMenu, setDisplayContextMenu] = useState(false);
 
   return (
     <article className="post">
@@ -18,8 +35,15 @@ const Post = (props) => {
         </div>
 
         <span className="post__header__utils icon_orange link">
-          <Icon icon="akar-icons:more-vertical" />
-          <div className="test"></div>
+          <Icon
+            icon="akar-icons:more-vertical"
+            onClick={() => {
+              setDisplayContextMenu(true);
+            }}
+          />
+          {displayContextMenu && isAuthor && (
+            <ContextMenu postId={props.post.id} reloadPost={props.reloadPost} />
+          )}
         </span>
       </div>
 
@@ -32,17 +56,18 @@ const Post = (props) => {
             <img
               src={images[imageSelected]}
               className="post__mainImage__image"
+              alt="Main post"
             />
           </div>
         )}
 
         <div className="post__imageSelector">
           {images &&
-            images.length != 1 &&
-            images.map((image, index) => (
+            images.length !== 1 &&
+            images.map((image: string, index: number) => (
               <div
                 className={`post__imageSelector__image-container ${
-                  imageSelected == index && "post__imageSelector__selected"
+                  imageSelected === index && "post__imageSelector__selected"
                 }`}
                 key={index}
               >
@@ -51,6 +76,7 @@ const Post = (props) => {
                   onClick={() => {
                     setImageSelected(index);
                   }}
+                  alt="A post"
                   className={`post__imageSelector__image`}
                 />
               </div>
